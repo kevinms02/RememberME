@@ -1,3 +1,6 @@
+// This file is deprecated. All authentication logic has been migrated to Supabase in server.js.
+// No code should be added here.
+
 const User = require('../models/user');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
