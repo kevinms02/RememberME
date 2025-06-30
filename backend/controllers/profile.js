@@ -1,3 +1,6 @@
+// This file is deprecated. All profile data is now managed by Supabase in server.js.
+// No code should be added here.
+
 const User = require('../models/user');
 const ErrorResponse = require('../utils/errorResponse');
 const asyncHandler = require('../middleware/async');
