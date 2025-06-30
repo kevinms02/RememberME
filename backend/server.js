@@ -1,38 +1,38 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-// const connectDB = require('./config/database'); // Uncomment if using MongoDB
+const { createClient } = require('@supabase/supabase-js');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
 
-// Uncomment if using MongoDB
-// connectDB();
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
 const app = express();
-
-// Body parser
 app.use(express.json());
-
-// Enable CORS
 app.use(cors());
-
-// Serve uploads directory statically for media access
-app.use('/uploads', express.static('uploads'));
-
-// Mount routers
-const auth = require('./routes/auth');
-const memories = require('./routes/memories');
-const profile = require('./routes/profile');
-
-app.use('/api/v1/auth', auth);
-app.use('/api/v1/memories', memories);
-app.use('/api/v1/profile', profile);
 
 // Health check endpoint
 app.get('/', (req, res) => {
   res.send('RememberME backend is running!');
 });
 
-// Jangan pakai app.listen di Vercel!
+// Supabase Auth: Login
+app.post('/api/v1/auth/login', async (req, res) => {
+  const { email, password } = req.body;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) return res.status(401).json({ error: error.message });
+  res.json({ user: data.user, session: data.session });
+});
+
+// Supabase Auth: Register
+app.post('/api/v1/auth/register', async (req, res) => {
+  const { email, password } = req.body;
+  const { data, error } = await supabase.auth.signUp({ email, password });
+  if (error) return res.status(400).json({ error: error.message });
+  res.json({ user: data.user });
+});
+
+// TODO: Tambahkan endpoint memories dan profile menggunakan Supabase
+
 module.exports = app;
