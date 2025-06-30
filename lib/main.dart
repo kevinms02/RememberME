@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'dart:io';
 import 'package:nfc_manager/nfc_manager.dart';
 import 'package:image_picker/image_picker.dart';
@@ -1366,3 +1367,33 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 }
+=======
+import 'package:get/get.dart';
+import 'views/auth/login_screen.dart';
+import 'views/main_navigation.dart';
+import 'utils/theme.dart';
+import 'controllers/auth_controller.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    Get.put(AuthController());
+    
+    return GetMaterialApp(
+      title: 'RememberME',
+      theme: AppTheme.lightTheme,
+      home: Obx(() {
+        final authController = Get.find<AuthController>();
+        return authController.isLoggedIn.value ? const MainNavigation() : LoginScreen();
+      }),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+>>>>>>> b50a951db1423de42b3e7d40652ab461e37624d0
