@@ -27,8 +27,14 @@ app.post('/api/v1/auth/login', async (req, res) => {
 
 // Supabase Auth: Register
 app.post('/api/v1/auth/register', async (req, res) => {
-  const { email, password } = req.body;
-  const { data, error } = await supabase.auth.signUp({ email, password });
+  const { email, password, username, name } = req.body;
+  const { data, error } = await supabase.auth.signUp({
+    email,
+    password,
+    options: {
+      data: { username, name }
+    }
+  });
   if (error) return res.status(400).json({ error: error.message });
   res.json({ user: data.user });
 });
