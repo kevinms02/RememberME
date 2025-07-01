@@ -1,2 +1,2 @@
-// This file is deprecated. Database connection is now managed by Supabase.
+// File ini sudah tidak digunakan. Semua koneksi database dikelola oleh Supabase.
 // No code should be added here.

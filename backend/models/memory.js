@@ -1,2 +1,2 @@
-// This file is deprecated. All memory data is now managed by Supabase.
+// File ini sudah tidak digunakan. Semua memories dikelola oleh Supabase.
 // No code should be added here.

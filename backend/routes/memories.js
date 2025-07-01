@@ -1,5 +1,5 @@
-const express = require('express');
-const {
+// Semua endpoint memories sudah dihandle di server.js menggunakan Supabase.
+// File ini tidak lagi digunakan.
   getMemories,
   getMemory,
   createMemory,

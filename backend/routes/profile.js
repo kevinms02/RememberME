@@ -1,3 +1,6 @@
+// Semua endpoint profile sudah dihandle di server.js menggunakan Supabase.
+// File ini tidak lagi digunakan.
+
 const express = require('express');
 const {
   getProfile,
